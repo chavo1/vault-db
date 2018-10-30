@@ -1,10 +1,6 @@
 #!/bin/bash
 
-id
-
 export VAULT_ADDR=http://127.0.0.1:8200
-
-set | grep -i vault
 
 vault secrets enable database
 
