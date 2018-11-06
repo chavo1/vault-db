@@ -3,10 +3,13 @@
 ## Rrequirment
 
 1. Vagrant [installed](https://www.vagrantup.com/docs/installation/).
+
+2. Clone the repo:
 ```
+$ git clone https://github.com/chavo1/vault-db.git && cd vault-db
 $ vagrant up
 ```
-2. At the end of the process credentials will be generated as follow:
+3. At the end of the process credentials will be generated as follow:
 ```
 vault: Tell Vault to generate a new login to MySQL database
     vault: Key                Value
@@ -18,4 +21,11 @@ vault: Tell Vault to generate a new login to MySQL database
     vault: lease_renewable    true
     vault: password           A1a-6dkkQ6CbILtY6wXB
     vault: username           v-root-mysqlrole-2Zd2y4SARHaIqjN
+```
+4. Login to your db using generated username and password:
+
+```
+$ vagrant ssh db
+vagrant@mysql:~$ mysql -u v-root-mysqlrole-2Zd2y4SARHaIqjN -p
+Enter password:
 ```
