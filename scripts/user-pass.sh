@@ -25,4 +25,4 @@ echo "Tell Vault to generate a new login to MySQL database"
 
 vault read database/creds/mysqlrole
 
-echo "Use the above credentials to loging in your MYSQL database!"
+echo "Use the above credentials to login into the MYSQL database!"
