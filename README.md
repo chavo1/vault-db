@@ -1,4 +1,4 @@
-# This is an example Vault repo which generate dynamic credential to login into MySQL db
+# This repo contains an example how to generate dynamic credential with Vault to login into MySQL DB.
 
 ## Rrequirment
 
