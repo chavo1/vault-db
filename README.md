@@ -11,7 +11,6 @@ $ vagrant up
 ```
 3. At the end of the process credentials will be generated as follow:
 ```
-vault: Tell Vault to generate a new login to MySQL database
     vault: Key                Value
     vault: ---                -----
     vault: lease_id           database/creds/mysq
