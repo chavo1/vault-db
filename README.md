@@ -19,4 +19,4 @@ vault: Tell Vault to generate a new login to MySQL database
     vault: password           A1a-6dkkQ6CbILtY6wXB
     vault: username           v-root-mysqlrole-2Zd2y4SARHaIqjN
     vault: Use the above credentials to loging in your MYSQL database!
-    ```
+```
