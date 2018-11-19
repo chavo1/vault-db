@@ -9,7 +9,39 @@
 $ git clone https://github.com/chavo1/vault-db.git && cd vault-db
 $ vagrant up
 ```
-3. At the end of the process credentials will be generated as follow:
+3. Login to the vault node (become super user - export the vault address and port - enable database secret engine) and execute a following commands:
+
+```
+$ sudo su -
+$ export VAULT_ADDR=http://127.0.0.1:8200
+$ vault secrets enable database
+```
+4. We are ready to configure the database engine - Configure Vault to talk to MySQL database.
+
+```
+vault write database/config/vaultdb \
+plugin_name=mysql-database-plugin \
+connection_url="{{username}}:{{password}}@tcp(192.168.56.57:3306)/" \
+allowed_roles="mysqlrole" \
+username="vault" \
+password="password"
+```
+
+5. Configure the role that maps a name in Vault to create the user in the mysql database.
+
+```
+vault write database/roles/mysqlrole \
+db_name=vaultdb \
+creation_statements="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL PRIVILEGES ON vaultdb.* TO '{{name}}'@'%';" \
+default_ttl="1h" \
+max_ttl="24h"
+```
+
+6. Tell Vault to generate a new login to MySQL database
+```
+vault read database/creds/mysqlrole
+```
+7. Generated credentials should look as follow:
 ```
     vault: Key                Value
     vault: ---                -----
@@ -21,7 +53,7 @@ $ vagrant up
     vault: password           A1a-6dkkQ6CbILtY6wXB
     vault: username           v-root-mysqlrole-2Zd2y4SARHaIqjN
 ```
-4. Login to your db using generated username and password:
+8. Login to your db using generated username and password:
 
 ```
 $ vagrant ssh db
