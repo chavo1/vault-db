@@ -12,6 +12,7 @@ $ vagrant up
 3. Login to the vault node (become super user - export the vault address and port - enable database secret engine) and execute a following commands:
 
 ```
+$ vagrant ssh vault
 $ sudo su -
 $ export VAULT_ADDR=http://127.0.0.1:8200
 $ vault secrets enable database
