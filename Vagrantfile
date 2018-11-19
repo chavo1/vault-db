@@ -22,7 +22,6 @@ Vagrant.configure("2") do |config|
     vault.vm.network "forwarded_port", guest: 8200, host: 8200
     vault.vm.provision :shell, :path => "scripts/provision.sh"
     vault.vm.provision :shell, :path => "scripts/vault.sh", run: "always"
-    vault.vm.provision :shell, :path => "scripts/user-pass.sh"
     # set VM specs
     config.vm.provider "virtualbox" do |v|
       v.memory = 1024
