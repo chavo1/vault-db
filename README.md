@@ -63,7 +63,7 @@ Enter password:
 ```
 ## Application integration with consule-template and envconsul tools
 
-[Consul-Template](https://github.com/hashicorp/consul-template) run daemon consul-template queries a Consul or Vault cluster and updates any number of specified templates on the file system.
+**[Consul-Template](https://github.com/hashicorp/consul-template) run daemon consul-template queries a Consul or Vault cluster and updates any number of specified templates on the file system.**
 
 - Go to the vagrant directory
 ```
@@ -88,7 +88,7 @@ username: v-token-mysqlrole-2DaeaMMs7CG45m
 password: A1a-3gS1qnrtiAKiVcse
 database: "vaultdb"
 ```
-[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault. 
+**[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault.**
 
 - Execute a following command - if your application is able read ENV it need minimum chages to use the credentials. 
 ```
