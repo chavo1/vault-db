@@ -61,7 +61,7 @@ $ vagrant ssh db
 vagrant@mysql:~$ mysql -u v-root-mysqlrole-2Zd2y4SARHaIqjN -p
 Enter password:
 ```
-## Application integration with consule-template and envconsul tools
+## Application integration with consul-template and envconsul tools
 
 **[Consul-Template](https://github.com/hashicorp/consul-template) run daemon consul-template queries a Consul or Vault cluster and updates any number of specified templates on the file system.**
 
