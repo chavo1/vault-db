@@ -99,7 +99,7 @@ database: "vaultdb"
 
 **[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault.**
 
-- Execute a following command - if your application is able read ENV it need minimum chages to use the credentials. 
+- Execute a following command - if your application is able to read ENV it need minimum chages to use the credentials. 
 ```
 $ VAULT_TOKEN="j5ycE1fHckQtPZUWnS37lLME" envconsul -upcase -secret database/creds/mysqlrole ./app.sh
 2018/11/20 08:50:29.727156 looking at vault database/creds/mysqlrole
