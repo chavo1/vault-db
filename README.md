@@ -117,4 +117,5 @@ $ VAULT_TOKEN="j5ycE1fHckQtPZUWnS37lLME" envconsul -upcase -secret database/cred
 2018/11/20 09:00:49.795401 looking at vault database/creds/mysqlrole
 2018/11/20 09:00:49.796890 [WARN] vault.token: TTL of "767h23m34s" exceeded the effective max_ttl of "767h13m14s"; TTL value is capped accordingly
 DATABASE_CREDS_MYSQLROLE_PASSWORD=A1a-2qMOrtJeajXZBzX9
+DATABASE_CREDS_MYSQLROLE_USERNAME=v-token-mysqlrole-1ekcjz3UhPYdZ0
 ```
