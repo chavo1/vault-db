@@ -1,6 +1,6 @@
 # This repo contains an example how to generate dynamic credential with Vault to login into MySQL DB.
 
-## Rrequirment
+## Requirements
 
 - Vagrant [installed](https://www.vagrantup.com/docs/installation/).
 
@@ -10,16 +10,16 @@ $ git clone https://github.com/chavo1/vault-db.git
 $ cd vault-db
 $ vagrant up
 ```
-- Login to the vault node (become super user - export the vault address and port - enable database secret engine) and execute a following commands:
 
+- Login to the vault node (become super user - export the vault address and port - enable database secret engine) and execute a following commands:
 ```
 $ vagrant ssh vault
 $ sudo su -
 $ export VAULT_ADDR=http://127.0.0.1:8200
 $ vault secrets enable database
 ```
-- We are ready to configure the database engine - Configure Vault to talk to MySQL database.
 
+- We are ready to configure the database engine - Configure Vault to talk to MySQL database.
 ```
 vault write database/config/vaultdb \
 plugin_name=mysql-database-plugin \
@@ -30,7 +30,6 @@ password="password"
 ```
 
 - Configure the role that maps a name in Vault to create the user in the mysql database.
-
 ```
 vault write database/roles/mysqlrole \
 db_name=vaultdb \
@@ -43,6 +42,7 @@ max_ttl="24h"
 ```
 vault read database/creds/mysqlrole
 ```
+
 - Generated credentials should look as follow:
 ```
     vault: Key                Value
@@ -55,13 +55,15 @@ vault read database/creds/mysqlrole
     vault: password           A1a-6dkkQ6CbILtY6wXB
     vault: username           v-root-mysqlrole-2Zd2y4SARHaIqjN
 ```
+
 - Login to your db using generated username and password:
 ```
 $ vagrant ssh db
 vagrant@mysql:~$ mysql -u v-root-mysqlrole-2Zd2y4SARHaIqjN -p
 Enter password:
 ```
-## Application integration with consul-template and envconsul tools
+
+## Application integration with consul-template
 
 **[Consul-Template](https://github.com/hashicorp/consul-template) run daemon consul-template queries a Consul or Vault cluster and updates any number of specified templates on the file system.**
 
@@ -69,18 +71,22 @@ Enter password:
 ```
 cd /vagrant
 ```
+
 - Create policies in Vault to control what a user can access
 ```
 vault policy write db_creds db_creds.hcl
 ```
+
 - Create vault token for consule-template
 ```
 vault token create -policy=db_creds
 ```
+
 Run command for consule-teplate to create config.yml with filled in credentials
 ```
 VAULT_TOKEN="5jiDLgS9fWx4T4i5ECOQc546" consul-template -template="config.yml.tpl:config.yml" -once
 ```
+
 - Generated config.yml file should should look as follow:
 ```
 ---
@@ -88,6 +94,9 @@ username: v-token-mysqlrole-2DaeaMMs7CG45m
 password: A1a-3gS1qnrtiAKiVcse
 database: "vaultdb"
 ```
+
+## Application integration with envconsul
+
 **[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault.**
 
 - Execute a following command - if your application is able read ENV it need minimum chages to use the credentials. 
@@ -101,6 +110,7 @@ My connection info is:
   password: "A1a-5pyNy4D06KTQ5D0w"
   database: "my-app
 ```
+
 - If you need you can check the credentials as follow:
 ```
 $ VAULT_TOKEN="j5ycE1fHckQtPZUWnS37lLME" envconsul -upcase -secret database/creds/mysqlrole env | grep DATABASE
