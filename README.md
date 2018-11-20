@@ -82,7 +82,7 @@ vault policy write db_creds db_creds.hcl
 vault token create -policy=db_creds
 ```
 
-Run command for consule-teplate to create config.yml with filled in credentials
+Run command for consul-teplate to create config.yml with filled in credentials
 ```
 VAULT_TOKEN="5jiDLgS9fWx4T4i5ECOQc546" consul-template -template="config.yml.tpl:config.yml" -once
 ```
