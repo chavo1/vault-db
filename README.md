@@ -87,9 +87,9 @@ VAULT_TOKEN="5jiDLgS9fWx4T4i5ECOQc546" consul-template -template="config.yml.tpl
 username: v-token-mysqlrole-2DaeaMMs7CG45m
 password: A1a-3gS1qnrtiAKiVcse
 database: "vaultdb"
-
-[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault. 
 ```
+[Envconsul](https://github.com/hashicorp/envconsul) provides a convenient way to launch a subprocess with environment variables populated from HashiCorp Consul and Vault. 
+
 - Execute a following command - if your application is able read ENV it need minimum chages to use the credentials. 
 ```
 $ VAULT_TOKEN="j5ycE1fHckQtPZUWnS37lLME" envconsul -upcase -secret database/creds/mysqlrole ./app.sh
