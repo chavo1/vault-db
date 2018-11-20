@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
     vault.vm.network "private_network", ip: "192.168.56.56"
     vault.vm.network "forwarded_port", guest: 8200, host: 8200
     vault.vm.provision :shell, :path => "scripts/provision.sh"
+    vault.vm.provision :shell, :path => "scripts/consul.sh", run: "always"
     vault.vm.provision :shell, :path => "scripts/vault.sh", run: "always"
     # set VM specs
     config.vm.provider "virtualbox" do |v|
